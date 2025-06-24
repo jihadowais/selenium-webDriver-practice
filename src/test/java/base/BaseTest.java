@@ -11,34 +11,28 @@ import org.testng.asserts.SoftAssert;
 import org.testng.Assert;
 
 public class BaseTest {
-    private WebDriver driver;  // create a Selenium WebDriver object
+    private WebDriver driver;
 
     @BeforeClass
     public void setUp() {
-        // Selenium webdriver need to know the exec. chromedriver path
         System.setProperty("webdriver.chrome.driver", "resources/chromedriver");
-
-        // instantiate a driver object to interact with the browser & do any automations
-        driver = new ChromeDriver(); // we can instantiate any other driver // ex. FirefoxDriver(); EdgeDriver(); ..
-        driver.manage().window().maximize(); // maximize the window // .fullscreen() to make it in fullscreen mode
-        // driver.manage().window().setSize(new Dimension(375, 812)); // set window size to iphone size
+        driver = new ChromeDriver();
     }
 
     @AfterClass
     public void tearDown() {
-        driver.quit();  // close(): closes the window, NOT the sessions // quit(): close any of the windows that are open and complete out this session.
+        driver.quit();
     }
 
     @BeforeMethod
     public void reopenHome() {
-        driver.get("https://the-internet.herokuapp.com/"); // launch the browser for our App
+        driver.get("https://the-internet.herokuapp.com/");
     }
 
     @Test(enabled = false, dataProvider = "getPageTitle", dataProviderClass = TestData.class)
     public void shouldShowAppTitleCorrectlyTest(String page, String title) {
-        System.out.println(driver.getTitle()); // print the App title
         String actual = driver.getTitle();
-        Assert.assertEquals(actual, title);
+        Assert.assertEquals(actual, title, "Page has no or wrong title .");
     }
 
     @Test(dataProvider = "getURLs", dataProviderClass = TestData.class)
@@ -46,11 +40,11 @@ public class BaseTest {
         WebElement element = driver.findElement(By.linkText(elementName));
         SoftAssert softAssert = new SoftAssert();
 
-        softAssert.assertTrue(element.isDisplayed());
+        softAssert.assertTrue(element.isDisplayed(), "Element doesn't show.");
 
         element.click();
         String actualURL = driver.getCurrentUrl();
-        softAssert.assertEquals(actualURL, expectedURL);
+        softAssert.assertEquals(actualURL, expectedURL, "Wrong redirection URL.");
 
         softAssert.assertAll();
     }
