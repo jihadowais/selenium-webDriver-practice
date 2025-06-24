@@ -25,7 +25,7 @@ public class BaseTest {
     }
 
     @BeforeMethod
-    public void reopenHome() {
+    public void openHome() {
         driver.get("https://the-internet.herokuapp.com/");
     }
 
@@ -46,6 +46,6 @@ public class BaseTest {
         String actualURL = driver.getCurrentUrl();
         softAssert.assertEquals(actualURL, expectedURL, "Wrong redirection URL.");
 
-        softAssert.assertAll();
+        softAssert.assertAll("Some elements are not visible or have wrong redirection URL.");
     }
 }
