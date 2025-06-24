@@ -1,4 +1,4 @@
-package base;
+package chapter3.practice;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;

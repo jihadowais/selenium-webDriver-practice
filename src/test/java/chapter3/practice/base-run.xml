@@ -3,7 +3,7 @@
 <suite name="Base Suite">
     <test name="Base Test">
         <classes>
-            <class name="base.BaseTest"></class>
+            <class name="chapter3.practice.BaseTest"></class>
         </classes>
     </test>
 </suite>

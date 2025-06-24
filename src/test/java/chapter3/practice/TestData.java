@@ -1,4 +1,4 @@
-package base;
+package chapter3.practice;
 
 import org.testng.annotations.DataProvider;
 
