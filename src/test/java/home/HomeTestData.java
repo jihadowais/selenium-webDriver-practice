@@ -1,21 +1,12 @@
-package chapter3.practice;
+package home;
 
 import org.testng.annotations.DataProvider;
 
-public class TestData {
+public class HomeTestData {
     @DataProvider
     private Object[][] getPageTitle() {
         return new Object[][]{
-                {"Home", "The Internet"},
-        };
-    }
-
-    @DataProvider
-    private Object[][] getLoginCredentials() {
-        return new Object[][] {
-                {true, "tomsmith", "SuperSecretPassword!", "You logged into a secure area!\n" + "×"},
-                {false, "tomsmithh", "SuperSecretPassword!", "Your username is invalid!\n" + "×"},
-                {false, "tomsmith", "SuperSecretPassword", "Your password is invalid!\n" + "×"}
+                {"The Internet"},
         };
     }
 

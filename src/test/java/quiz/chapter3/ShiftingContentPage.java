@@ -1,4 +1,4 @@
-package chapter3.quiz;
+package quiz.chapter3;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;

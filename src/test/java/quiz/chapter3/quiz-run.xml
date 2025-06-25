@@ -3,7 +3,7 @@
 <suite name="Shifting Content Page Suite">
     <test name="Shifting Content Page Test">
         <classes>
-            <class name="chapter3.quiz.ShiftingContentPage"></class>
+            <class name="quiz.chapter3.ShiftingContentPage"></class>
         </classes>
     </test>
 </suite>
