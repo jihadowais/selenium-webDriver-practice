@@ -8,6 +8,9 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.annotations.*;
 import org.testng.asserts.SoftAssert;
 import org.testng.Assert;
+import pages.HomePage;
+import pages.LoginPage;
+import pages.SecureAreaPage;
 
 import java.net.MalformedURLException;
 import java.net.URISyntaxException;
@@ -16,12 +19,13 @@ import java.util.List;
 
 public class BaseTest {
     private WebDriver driver;
+    protected HomePage homePage;
 
     @BeforeClass
     public void setUp() {
         System.setProperty("webdriver.chrome.driver", "resources/chromedriver");
         driver = new ChromeDriver();
-        driver.manage().window().minimize();
+        driver.manage().window().maximize();
     }
 
     @AfterClass
@@ -32,12 +36,27 @@ public class BaseTest {
     @BeforeMethod
     public void openHome() {
         driver.get("https://the-internet.herokuapp.com/");
+        homePage = new HomePage(driver);
     }
 
     @Test(dataProvider = "getPageTitle", dataProviderClass = TestData.class)
     public void shouldShowAppTitleCorrectlyTest(String page, String title) {
-        String actual = driver.getTitle();
+        String actual = homePage.getTitle();
         Assert.assertEquals(actual, title, "Page has no or wrong title .");
+    }
+
+    @Test(dataProvider = "getLoginCredentials", dataProviderClass = TestData.class)
+    public void verifyLoginFunctionality(boolean expectedIsLoggedIn, String username, String password, String expectedAlertMessage) {
+        LoginPage loginPage = homePage.clickFormAuthentication();
+
+        SecureAreaPage secureAreaPage = loginPage.login(username, password);
+        boolean actualIsLoggedIn = secureAreaPage.isLoggedIn();
+        String actualAlertMessage = secureAreaPage.readAlertMessage();
+
+        SoftAssert softAssert = new SoftAssert();
+        softAssert.assertEquals(actualIsLoggedIn, expectedIsLoggedIn, "Unexpected login behaviour.");
+        softAssert.assertEquals(actualAlertMessage, expectedAlertMessage, "Displayed Alert Message is not correct.");
+        softAssert.assertAll("Unexpected login behaviour happened or the displayed alert message correctly.");
     }
 
     @Test(dataProvider = "getURLs", dataProviderClass = TestData.class)

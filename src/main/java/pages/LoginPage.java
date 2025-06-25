@@ -25,4 +25,10 @@ public class LoginPage {
         driver.findElement(loginButton).click(); // submit();
         return new SecureAreaPage(driver);
     }
+
+    public SecureAreaPage login(String username, String password) {
+        setUsernameInput(username);
+        setPasswordInput(password);
+        return clickLoginButton();
+    }
 }

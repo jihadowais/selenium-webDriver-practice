@@ -6,20 +6,27 @@ import org.openqa.selenium.WebDriver;
 public class SecureAreaPage {
     private WebDriver driver;
     private By logoutButton = By.cssSelector("#content div a");
-    private By successMessage = By.id("flash");
+    private By alertMessage = By.id("flash");
+    private String url = "https://the-internet.herokuapp.com/secure";
 
     public SecureAreaPage(WebDriver driver) { this.driver = driver; }
 
-    private LoginPage logout() {
+    public LoginPage logout() {
         driver.findElement(logoutButton).click();
         return new LoginPage(driver);
     }
 
-    private boolean messageDisplayed() {
-        return driver.findElement(successMessage).isDisplayed();
+    public boolean isMessageDisplayed() {
+        return driver.findElement(alertMessage).isDisplayed();
     }
 
-    private String readDisplayedMessage() {
-        return driver.findElement(successMessage).getText();
+    public String readAlertMessage() {
+        return driver.findElement(alertMessage).getText();
+    }
+
+    public boolean isLoggedIn() {
+        if (url.equalsIgnoreCase(driver.getCurrentUrl()))
+            return true;
+        return false;
     }
 }
