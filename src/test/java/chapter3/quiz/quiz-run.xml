@@ -1,0 +1,9 @@
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+
+<suite name="Shifting Content Page Suite">
+    <test name="Shifting Content Page Test">
+        <classes>
+            <class name="chapter3.quiz.ShiftingContentPage"></class>
+        </classes>
+    </test>
+</suite>
