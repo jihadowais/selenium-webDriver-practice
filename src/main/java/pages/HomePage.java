@@ -10,7 +10,6 @@ import static pages.HelperMethods.isValidURL;
 
 public class HomePage {
     private final WebDriver driver;
-    private final By formAuthenticationLink = By.linkText("Form Authentication");
     private final String title;
     private WebElement currentElement;
 
@@ -24,8 +23,17 @@ public class HomePage {
     }
 
     public LoginPage clickFormAuthentication() {
-        driver.findElement(formAuthenticationLink).click();
+        clickLink("Form Authentication");
         return new LoginPage(driver);
+    }
+
+    public DropdownPage clickDropdown() {
+        clickLink("Dropdown");
+        return new DropdownPage(driver);
+    }
+
+    private void clickLink(String linkTextSelector) {
+        driver.findElement(By.linkText(linkTextSelector)).click();
     }
 
     public void setCurrentElement(String element) {
@@ -49,5 +57,4 @@ public class HomePage {
         }
         return elementsIsValidURLs;
     }
-
 }
