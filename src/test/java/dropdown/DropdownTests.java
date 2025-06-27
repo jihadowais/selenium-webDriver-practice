@@ -15,11 +15,11 @@ public class DropdownTests extends BaseTests {
 
         List<String> selectedVisibleOptions = dropdown.getSelectedOptions();
         int actualNumberOfSelectedOptions = selectedVisibleOptions.size();
-        String actualSelectedVisibleOption = selectedVisibleOptions.getFirst();
+        boolean actualIsOptionSelected = selectedVisibleOptions.contains(expectedSelectedOption);
 
         SoftAssert softAssert = new SoftAssert();
         softAssert.assertEquals(actualNumberOfSelectedOptions, 1, "The selected options are more than 1 option. It should only select: '" + expectedSelectedOption + "'.");
-        softAssert.assertEquals(actualSelectedVisibleOption, expectedSelectedOption, "The chosen selected option: '" + expectedSelectedOption + "', is not the visible option.");
+        softAssert.assertTrue(actualIsOptionSelected, "The chosen selected option: '" + expectedSelectedOption + "', is not the visible option.");
         softAssert.assertAll("Selection error. The number of selected options maybe more than 1 or maybe select the wrong option.");
     }
 }
