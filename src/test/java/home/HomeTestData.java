@@ -4,14 +4,14 @@ import org.testng.annotations.DataProvider;
 
 public class HomeTestData {
     @DataProvider
-    private Object[][] getPageTitle() {
+    public Object[][] getPageTitle() {
         return new Object[][]{
                 {"The Internet"},
         };
     }
 
     @DataProvider()
-    private Object[][] getURLs() {
+    public Object[][] getURLs() {
         return new Object[][]{
                 {"A/B Testing", "https://the-internet.herokuapp.com/abtest"},
                 {"Add/Remove Elements", "https://the-internet.herokuapp.com/add_remove_elements/"},
