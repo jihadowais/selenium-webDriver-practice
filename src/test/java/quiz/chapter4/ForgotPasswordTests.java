@@ -10,8 +10,7 @@ public class ForgotPasswordTests extends BaseTests {
     @Test(dataProvider = "getForgotPasswordEmails", dataProviderClass = ForgotPasswordTestData.class)
     public void validateForgotPasswordSendEmail(boolean expectedIsEmailSent, String email, String expectedAlertMessage, String assertionSentEmailErrorMessage) {
         ForgotPasswordPage forgetPasswordPage = homePage.clickForgetPassword();
-        forgetPasswordPage.setEmailInput(email);
-        EmailSentPage emailSentPage = forgetPasswordPage.clickRetrievePasswordButton();
+        EmailSentPage emailSentPage = forgetPasswordPage.retrievePassword(email);
 
         boolean actualIsEmailSent = emailSentPage.isEmailSent(); // should be enhanced to cover the non-sent-email scenario but the server now is down: "internal server error" with status-code: 500
         String actualAlertMessage = emailSentPage.getMessageContent();
