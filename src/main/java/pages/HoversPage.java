@@ -11,7 +11,6 @@ public class HoversPage {
     private final WebDriver driver;
     private By figure;
 
-
     public HoversPage(WebDriver driver) { this.driver = driver; }
 
     private void setFigure(String userName) {
