@@ -19,15 +19,13 @@ public class HorizontalSliderPage {
         return driver.findElement(input);
     }
 
-    public void move(int numberOfRightMoves, int numberOfLeftMoves) {
-        List<CharSequence> pressedKeys = new ArrayList<>();
+    public void moveSlider(int numberOfRightMoves, int numberOfLeftMoves) {
+        WebElement slider = accessSlider();
 
         for (int j=0; j<numberOfRightMoves; j++)
-            pressedKeys.add(Keys.ARROW_RIGHT);
+            slider.sendKeys(Keys.ARROW_RIGHT);
         for (int j=0; j<numberOfLeftMoves; j++)
-            pressedKeys.add(Keys.ARROW_LEFT);
-
-        accessSlider().sendKeys(Keys.chord(pressedKeys));
+            slider.sendKeys(Keys.ARROW_LEFT);
     }
 
     public String getShownNumber() {
