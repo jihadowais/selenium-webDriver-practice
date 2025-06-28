@@ -67,6 +67,11 @@ public class HomePage {
         return new ContextMenuPage(driver);
     }
 
+    public FramesPage clickFrames() {
+        clickLink("Frames");
+        return new FramesPage(driver);
+    }
+
     private void clickLink(String linkTextSelector) {
         driver.findElement(By.linkText(linkTextSelector)).click();
     }
