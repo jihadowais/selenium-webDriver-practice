@@ -5,9 +5,6 @@ import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
-import java.util.ArrayList;
-import java.util.List;
-
 public class HorizontalSliderPage {
     private final WebDriver driver;
     private final By input = By.tagName("input");
