@@ -1,4 +1,4 @@
-package quiz.chapter7.contextMenu;
+package quiz.chapter7;
 
 import base.BaseTests;
 import org.testng.Assert;
