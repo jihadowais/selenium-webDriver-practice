@@ -6,7 +6,6 @@ import org.openqa.selenium.OutputType;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.events.EventFiringDecorator;
-import org.openqa.selenium.support.events.WebDriverListener;
 import org.testng.ITestResult;
 import org.testng.annotations.*;
 
@@ -25,8 +24,7 @@ public class BaseTests {
     public void setUp() {
         System.setProperty("webdriver.chrome.driver", "resources/chromedriver");
         WebDriver chromeDriver = new ChromeDriver();
-        WebDriverListener listener = new EventReporter();
-        driver = new EventFiringDecorator(listener).decorate(chromeDriver);
+        driver = new EventFiringDecorator(new EventReporter()).decorate(chromeDriver);
         driver.manage().window().maximize();
     }
 
