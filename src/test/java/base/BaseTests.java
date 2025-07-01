@@ -1,6 +1,7 @@
 package base;
 
 import com.google.common.io.Files;
+import org.openqa.selenium.Cookie;
 import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.WebDriver;
@@ -19,7 +20,7 @@ import java.io.IOException;
 public class BaseTests {
     private WebDriver driver;
     protected HomePage homePage;
-    protected String domainURL = "https://the-internet.herokuapp.com/";
+    protected String domainURL = "the-internet.herokuapp.com";
 
     @BeforeClass
     public void setUp() {
@@ -35,10 +36,17 @@ public class BaseTests {
 
     @BeforeMethod
     public void openHomePage() {
-        driver.get(domainURL);
+        driver.get("https://" + domainURL);
         homePage = new HomePage(driver);
+        setCookie(); // Always open the page BEFORE adding cookies
     }
 
+    /**
+     * Take a screenshot when test-method failed,
+     * save it to /resources/screenshots folder,
+     * and rename it by the failed test-method's name.
+     * @param result contains the test method result (succeeded & failed)
+     */
     @AfterMethod
     public void recordFailure(ITestResult result){
         if(ITestResult.FAILURE == result.getStatus())
@@ -62,7 +70,15 @@ public class BaseTests {
     private ChromeOptions getChromeOptions() {
         ChromeOptions options = new ChromeOptions();
         options.addArguments("--start-maximized"); // to open chrome in the maximized mode
-        options.addArguments("--headless"); // this will run the tests without opening the browser
+        // options.addArguments("--headless"); // this will run the tests without opening the browser
         return options;
     }
+
+    private void setCookie(){
+        Cookie cookie = new Cookie.Builder("username", "Ammer")
+                .domain(domainURL).build(); // The domain needs to be the website that we're actually storing this cookie for.
+        driver.manage().addCookie(cookie);
+        driver.navigate().refresh(); // Optional: reload so the cookie is active
+    }
+
 }
