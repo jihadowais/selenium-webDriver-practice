@@ -10,6 +10,15 @@ public class HomeTestData {
         };
     }
 
+    @DataProvider
+    public Object[][] getDeletedCookiesData() {
+        return new Object[][]{
+                {"optimizelyBuckets"},
+                {"optimizelyEndUserId"},
+                {"page_visit_count"}
+        };
+    }
+
     @DataProvider()
     public Object[][] getURLs() {
         return new Object[][]{

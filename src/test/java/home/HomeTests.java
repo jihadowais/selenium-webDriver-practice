@@ -40,4 +40,12 @@ public class HomeTests extends BaseTests {
         }
         softAssert.assertAll("Some elements may have a wrong URL or maybe it's not found.");
     }
+
+    @Test(dataProvider = "getDeletedCookiesData", dataProviderClass = HomeTestData.class)
+    public void deleteCookieTest(String cookieName) {
+        boolean isCookieExists = homePage.deleteCookie(cookieName);
+        boolean isCookieDeleted = homePage.isCookieExists(cookieName);
+        Assert.assertTrue(isCookieExists, "Cookie does not exist to be deleted! There's no cookie with the name: '" + cookieName + "'.");
+        Assert.assertFalse(isCookieDeleted, "Cookie was not deleted!");
+    }
 }

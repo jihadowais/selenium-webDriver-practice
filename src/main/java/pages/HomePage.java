@@ -1,6 +1,7 @@
 package pages;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.Cookie;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
@@ -96,5 +97,18 @@ public class HomePage {
             elementsIsValidURLs.put(element.getText(), isValidURL(element.findElement(By.tagName("a")).getDomProperty("href")));
         }
         return elementsIsValidURLs;
+    }
+
+    public boolean deleteCookie(String cookieName) {
+        Cookie cookie = driver.manage().getCookieNamed(cookieName);
+        if (cookie != null) {
+            driver.manage().deleteCookie(cookie);
+            return true;
+        }
+        return false;
+    }
+
+    public boolean isCookieExists(String cookieName) {
+        return driver.manage().getCookieNamed(cookieName) != null;
     }
 }
