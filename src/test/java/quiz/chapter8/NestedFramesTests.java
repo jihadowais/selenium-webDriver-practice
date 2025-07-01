@@ -11,7 +11,7 @@ public class NestedFramesTests extends BaseTests {
         var nestedFramesPage = framesPage.clickNestedFrames();
 
         SoftAssert softAssert = new SoftAssert();
-        softAssert.assertEquals(nestedFramesPage.getLeftFrameText(), "LFT", "Left iframe message is incorrect.");
+        softAssert.assertEquals(nestedFramesPage.getLeftFrameText(), "LEFT", "Left iframe message is incorrect.");
         softAssert.assertEquals(nestedFramesPage.getMiddleFrameText(), "MIDDLE", "Middle iframe message is incorrect.");
         softAssert.assertEquals(nestedFramesPage.getRightFrameText(), "RIGHT", "Right iframe message is incorrect.");
         softAssert.assertEquals(nestedFramesPage.getBottomFrameText(), "BOTTOM", "Bottom iframe message is incorrect.");

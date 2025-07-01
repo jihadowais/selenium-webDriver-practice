@@ -1,7 +1,6 @@
 package base;
 
 import com.google.common.io.Files;
-import org.openqa.selenium.Cookie;
 import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.WebDriver;
@@ -13,6 +12,7 @@ import org.testng.annotations.*;
 
 import pages.HomePage;
 import utils.EventReporter;
+import utils.CookieManager;
 
 import java.io.File;
 import java.io.IOException;
@@ -46,7 +46,8 @@ public class BaseTests {
     public void openHomePage() {
         driver.get("https://" + domainURL);
         homePage = new HomePage(driver);
-        setCookie(); // Always open the page BEFORE adding cookies
+        var cookieManager = getCookieManager();
+        cookieManager.setCookie(domainURL); // Always open the page BEFORE adding cookies
     }
 
     /**
@@ -82,16 +83,7 @@ public class BaseTests {
         return options;
     }
 
-    /**
-     * Just a simple example for setting a cookie.<br>
-     * Does the cookie have meaning to a page?<br>
-     * 		✅ Yes: put cookie logic in the Page Object.<br>
-     * 		❌ No, generic test config: keep it in BaseTest.
-     */
-    private void setCookie(){
-        Cookie cookie = new Cookie.Builder("username", "Ammer")
-                .domain(domainURL).build(); // The domain needs to be the website that we're actually storing this cookie for.
-        driver.manage().addCookie(cookie);
-        driver.navigate().refresh(); // Optional: reload so the cookie is active
+    public CookieManager getCookieManager(){
+        return new CookieManager(driver);
     }
 }
