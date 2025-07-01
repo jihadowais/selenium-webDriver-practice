@@ -17,6 +17,14 @@ import utils.EventReporter;
 import java.io.File;
 import java.io.IOException;
 
+/**
+ * It’s the test infrastructure Base Class that all test classes inherits from it. <br>
+ * It contains:<br><hr>
+ *   - Driver setup/teardown <br>
+ *   - Browser options/config <br>
+ *   - Hooks (@BeforeClass, @BeforeMethod, @AfterMethod) <br>
+ *   - Global utilities (screenshots, listeners)
+ */
 public class BaseTests {
     private WebDriver driver;
     protected HomePage homePage;
@@ -74,11 +82,16 @@ public class BaseTests {
         return options;
     }
 
+    /**
+     * Just a simple example for setting a cookie.<br>
+     * Does the cookie have meaning to a page?<br>
+     * 		✅ Yes: put cookie logic in the Page Object.<br>
+     * 		❌ No, generic test config: keep it in BaseTest.
+     */
     private void setCookie(){
         Cookie cookie = new Cookie.Builder("username", "Ammer")
                 .domain(domainURL).build(); // The domain needs to be the website that we're actually storing this cookie for.
         driver.manage().addCookie(cookie);
         driver.navigate().refresh(); // Optional: reload so the cookie is active
     }
-
 }
