@@ -36,11 +36,11 @@ public class EventReporter implements WebDriverListener {
     @Override
     public void beforeClick(WebElement element) {
         WebDriverListener.super.beforeClick(element);
-        System.out.println(
-                "This method will run before clicking any element."
-                + "\nYou're clicking the element: "
-                + element.getText()
-                + "...\n"
-        );
+//        System.out.println(
+//                "This method will run before clicking any element."
+//                + "\nYou're clicking the element: "
+//                + element.getText()
+//                + "...\n"
+//        );
     }
 }
