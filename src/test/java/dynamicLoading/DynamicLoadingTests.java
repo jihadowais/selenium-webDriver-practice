@@ -1,6 +1,7 @@
 package dynamicLoading;
 
 import base.BaseTests;
+import org.testng.Assert;
 import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
 
@@ -17,5 +18,13 @@ public class DynamicLoadingTests extends BaseTests {
         softAssert.assertTrue(isDisplayed, "Message is not displayed!");
         softAssert.assertEquals(displayedMessage, "Hello World!", "The message content is not correct.");
         softAssert.assertAll();
+    }
+
+    @Test
+    public void messageDisplayedOnClickStartTest() {
+        var dynamicPage = homePage.clickDynamicLoading().clickExample2();
+        dynamicPage.clickStartButton();
+        boolean isDisplayed = dynamicPage.isMessageDisplayed();
+        Assert.assertTrue(isDisplayed, "Message is not displayed!");
     }
 }
