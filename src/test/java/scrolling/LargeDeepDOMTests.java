@@ -1,4 +1,4 @@
-package largeDeepDOM;
+package scrolling;
 
 import base.BaseTests;
 import org.testng.annotations.Test;
