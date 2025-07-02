@@ -16,12 +16,8 @@ public class InfiniteScrollPage {
      */
     public void scrollToParagraph(int index) {
         String script = "window.scrollTo(0, document.body.scrollHeight)";
-        int paragraphsNumber;
-
-        do {
+        while (getPresentNumberOfParagraphs() < index && index > 0)
             ((JavascriptExecutor) driver).executeScript(script);
-            paragraphsNumber = getPresentNumberOfParagraphs();
-        } while (paragraphsNumber<index && index>=1);
     }
 
     private int getPresentNumberOfParagraphs() {
