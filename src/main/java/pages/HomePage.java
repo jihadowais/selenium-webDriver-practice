@@ -78,6 +78,11 @@ public class HomePage {
         return new DynamicLoadingPage(driver);
     }
 
+    public LargeDeepDOMPage clickLargeDeepDOM() {
+        clickLink("Large & Deep DOM");
+        return new LargeDeepDOMPage(driver);
+    }
+
     private void clickLink(String linkTextSelector) {
         driver.findElement(By.linkText(linkTextSelector)).click();
     }
