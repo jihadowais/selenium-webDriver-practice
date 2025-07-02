@@ -16,6 +16,7 @@ import utils.CookieManager;
 
 import java.io.File;
 import java.io.IOException;
+import java.time.Duration;
 
 /**
  * It’s the test infrastructure Base Class that all test classes inherits from it. <br>
@@ -35,6 +36,7 @@ public class BaseTests {
         System.setProperty("webdriver.chrome.driver", "resources/chromedriver");
         WebDriver chromeDriver = new ChromeDriver(getChromeOptions());
         driver = new EventFiringDecorator(new EventReporter()).decorate(chromeDriver);
+        configureTimeouts();
     }
 
     @AfterClass
@@ -85,5 +87,14 @@ public class BaseTests {
 
     public CookieManager getCookieManager(){
         return new CookieManager(driver);
+    }
+
+    /**
+     * This is a private method to configue the timeout throughout the whole project's tests.
+     */
+    private void configureTimeouts() {
+        driver.manage().timeouts().pageLoadTimeout(Duration.ofSeconds(10)); // To set the amount of time to wait for a page load to complete before it throws an error.
+        // driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(30)); // this is on the whole project
+        // driver.manage().timeouts().scriptTimeout(Duration.ofSeconds(10)); // To set the amount of time to wait for ((asynchronous)) scripts to finish executing.
     }
 }
