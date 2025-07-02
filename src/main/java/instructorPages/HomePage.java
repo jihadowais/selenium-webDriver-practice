@@ -21,6 +21,11 @@ public class HomePage {
         return new HorizontalSliderPage(driver);
     }
 
+    public DropdownPage clickDropDown(){
+        clickLink("Dropdown");
+        return new DropdownPage(driver);
+    }
+
     private void clickLink(String linkText){
         driver.findElement(By.linkText(linkText)).click();
     }
