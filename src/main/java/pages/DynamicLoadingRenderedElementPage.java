@@ -23,4 +23,8 @@ public class DynamicLoadingRenderedElementPage {
     public boolean isMessageDisplayed() {
         return driver.findElement(displayedMessage).isDisplayed();
     }
+
+    public boolean isStartButtonExist() {
+        return driver.findElement(startButton).isDisplayed();
+    }
 }

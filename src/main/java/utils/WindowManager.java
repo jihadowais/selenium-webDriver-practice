@@ -3,6 +3,7 @@ package utils;
 import org.openqa.selenium.WebDriver;
 
 import java.net.URL;
+import java.util.Set;
 
 public class WindowManager {
     private final WebDriver driver;
@@ -31,5 +32,23 @@ public class WindowManager {
 
     public void refreshPage() {
         navigate.refresh();
+    }
+
+    public void switchToTab(String tabTitle) {
+        Set<String> windows = driver.getWindowHandles();
+
+        for (String window: windows) {
+            driver.switchTo().window(window);
+            if (tabTitle.equals(driver.getTitle())) break;
+        }
+    }
+
+    public void switchToNewTab() {
+        Set<String> windows = driver.getWindowHandles();
+        windows.forEach(window -> driver.switchTo().window(window));
+    }
+
+    public int getNumberOfOpenedTabs() {
+        return driver.getWindowHandles().size();
     }
 }

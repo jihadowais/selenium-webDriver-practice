@@ -27,4 +27,11 @@ public class DynamicLoadingTests extends BaseTests {
         boolean isDisplayed = dynamicPage.isMessageDisplayed();
         Assert.assertTrue(isDisplayed, "Message is not displayed!");
     }
+
+    @Test
+    public void verifyStartButtonExistsInExample2NewTabTest() {
+        var dynamicPage = homePage.clickDynamicLoading().openLinksInNewTabs();
+        getWindowManager().switchToNewTab();
+        Assert.assertTrue(dynamicPage.isStartButtonExist(), "Button does not exist.");
+    }
 }
