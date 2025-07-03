@@ -5,7 +5,7 @@ import org.testng.annotations.Test;
 
 public class NavigationTests extends BaseTests {
     /**
-     * This is not a real test. It's just for practice & utilize the window manager navigation.
+     * This is not a real test. It's just for practice & to utilise the window manager navigation.
      */
     @Test
     public void navigatorTest() {
