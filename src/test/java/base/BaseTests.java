@@ -13,6 +13,7 @@ import org.testng.annotations.*;
 import pages.HomePage;
 import utils.EventReporter;
 import utils.CookieManager;
+import utils.WindowManager;
 
 import java.io.File;
 import java.io.IOException;
@@ -87,6 +88,10 @@ public class BaseTests {
 
     public CookieManager getCookieManager(){
         return new CookieManager(driver);
+    }
+
+    public WindowManager getWindowManager() {
+        return new WindowManager(driver);
     }
 
     /**
