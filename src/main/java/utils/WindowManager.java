@@ -43,6 +43,29 @@ public class WindowManager {
         }
     }
 
+    /**
+     * <code>driver.getWindowHandles()</code> returns a <code>Set<String></code> → which does not guarantee order by definition.<br>
+     * So technically, relying on the last one in the Set to be the newest tab is <b>not guaranteed by the Java Set contract</b>.<br>
+     * <br>
+     * <b><u>But in practice:</u></b><br>
+     * Selenium’s internal implementation does <b>return handles in the order</b> they were opened (because under the hood it’s a <b><i>LinkedHashSet</i></b>).<br>
+     * <br>
+     * <b><i>So usually the last handle is the newest.</i></b><br>
+     * <br>
+     * This is convenient but <b>not 100% robust</b> because you’re depending on internal Selenium behavior not guaranteed by the Java Set interface.<br>
+     * <hr>
+     * ✔ A safer and clearer approach is to <b>collect the handles into a List</b> (which does guarantee order) and pick the last one explicitly.<br>
+     * <b><u>Example:</u></b>
+     * <pre>
+     * {@code
+     *      public void switchToNewTab() {
+     *          List<String> windows = new ArrayList<>(driver.getWindowHandles());
+     *          driver.switchTo().window(windows.get(windows.size() - 1));
+     *      }
+     * }
+     * </pre><br>
+     * In this approach, <b>No looping and switching</b> needed to every window in the set, that's unnecessary and inefficient.
+     */
     public void switchToNewTab() {
         Set<String> windows = driver.getWindowHandles();
         windows.forEach(window -> driver.switchTo().window(window));
