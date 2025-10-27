@@ -37,7 +37,7 @@ The goal of this project is to showcase:
 #### Framework Layer **`src/main/java`**
 - **`pages/`** — All Page Objects following POM pattern (**My implementation**)
 - **`utils/`** — Utility classes: event listeners, window/tab managers, cookie managers
-- **`instructorPages/`** — Some Page Objects that differs from my mine, for comparison (**Instructor's implementation**)
+- **`instructorPages/`** — Some Page Objects that differs from mine, for comparison (**Instructor's implementation**)
  
 #### Test Layer **`src/test/java`**
 - **`base/`** — Base test setup: driver config, timeouts, hooks
